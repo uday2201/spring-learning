@@ -2,11 +2,14 @@ package com.example.spring_learning.selenium.tests;
 
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.MediaEntityBuilder;
 import com.example.spring_learning.selenium.driverfactory.WebDriverFactory;
 import com.example.spring_learning.selenium.utils.ConfigReader;
 
 import com.example.spring_learning.selenium.utils.ExtentManager;
+import com.example.spring_learning.selenium.utils.ScreenShotUtil;
 import org.openqa.selenium.WebDriver;
+import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeMethod;
@@ -16,6 +19,7 @@ public class BaseTest {
     public WebDriver driver;
     public static ExtentReports extent;
     public static ThreadLocal<ExtentTest> test = new ThreadLocal<>();
+    public ExtentTest logger;
 
     @BeforeSuite
     public void setUpReport() {
@@ -31,10 +35,5 @@ public class BaseTest {
     @AfterMethod
     public void tearDown() {
         driver.quit();
-    }
-
-    @AfterSuite
-    public void tearDownReport() {
-        extent.flush();
     }
 }

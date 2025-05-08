@@ -15,8 +15,8 @@ public class ExtentManager {
 
             extent = new ExtentReports();
             extent.attachReporter(reporter);
-            extent.setSystemInfo("Environment", "QA");
-            extent.setSystemInfo("Tester", "Your Name");
+            extent.setSystemInfo("Environment", ConfigReader.getKey("env"));
+            extent.setSystemInfo("Tester", ConfigReader.getKey("author"));
         }
         return extent;
     }
