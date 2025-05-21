@@ -11,28 +11,62 @@ public class SortLinkedList {
         Node node3 = new Node();
         Node node4 = new Node();
         node.val = 4;
-        node1.val = 2;
+        node1.val = 3;
         node2.val = 1;
         node3.val = 3;
-        node4.val = 5;
+        node4.val = 4;
         node.next = node1;
         node1.next = node2;
         node2.next = node3;
         node3.next = node4;
-        node4.next = null;
 
 
         System.out.println("Original Linked List:");
         show(node);
 
-        Node sortedNode = sort(node);
+//        Node sortedNode = sort(node);
 
-        System.out.println("\nSorted Linked List:");
-        show(sortedNode);
+//        System.out.println("\nSorted Linked List:");
+//        show(sortedNode);
 
         System.out.println("\nReversed Linked List:");
-        Node reversedNode = reverseTreeNode(sortedNode);
+        Node reversedNode = reverseTreeNode(node);
         show(reversedNode);
+        System.out.println("\nGiven Linked List is a palindrome: " + isPalindrome(node));
+
+    }
+
+    public static boolean isPalindrome(Node head) {
+        Node fast = head;
+        Node slow = head;
+
+        // Find middle
+        while (fast != null && fast.next != null) {
+            fast = fast.next.next;
+            slow = slow.next;
+        }
+
+        // Reverse second half
+        Node prev = null;
+        while (slow != null) {
+            Node next = slow.next;
+            slow.next = prev;
+            prev = slow;
+            slow = next;
+        }
+
+        // Compare both halves
+        Node left = head;
+        Node right = prev;
+        while (right != null) {
+            if (left.val != right.val) {
+                return false;
+            }
+            left = left.next;
+            right = right.next;
+        }
+
+        return true;
     }
 
     private static void show(Node sortedNode) {

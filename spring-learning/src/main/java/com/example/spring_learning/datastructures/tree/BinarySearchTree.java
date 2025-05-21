@@ -15,6 +15,8 @@ public class BinarySearchTree {
 
         System.out.println("The height of the above binary tree is: " + height(treeNode));
 
+//        System.out.println("The min depth of the leaf node is of the above binary tree is: " + minDepth(treeNode));
+
         TreeNode treeNode1 = new TreeNode(4);
         treeNode1.left = new TreeNode(2);
         treeNode1.left.left = new TreeNode(1);
@@ -74,6 +76,13 @@ public class BinarySearchTree {
     public static int height(TreeNode root) {
         if(root == null) return 0;
         return 1 + Math.max(height(root.left), height(root.right));
+    }
+
+    public static int minDepth(TreeNode root) {
+        if(root==null) return 0;
+        if(root.left == null) return 1 + minDepth(root.right);
+        if(root.right == null) return 1 + minDepth(root.left);
+        return 1 + Math.min(minDepth(root.left), minDepth(root.right));
     }
 
     public static boolean areSame(TreeNode t1, TreeNode t2) {

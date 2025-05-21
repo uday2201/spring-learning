@@ -1,1 +1,3 @@
 rootProject.name = 'spring-learning'
+include 'Check-Style-AI-Plugin'
+
